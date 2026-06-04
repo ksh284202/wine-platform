@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ensureDemoDataSeeded } from "../../lib/demoData";
 
 const STORAGE_KEY = "menus";
 
@@ -60,6 +61,7 @@ export default function MenusPage() {
   const [menus, setMenus] = useState([]);
 
   useEffect(() => {
+    ensureDemoDataSeeded();
     setMenus(readMenus());
   }, []);
 

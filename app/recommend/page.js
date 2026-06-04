@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { getSeededDashboardData } from "../../lib/demoData";
 
 const WINES_KEY = "wines";
 const MENUS_KEY = "menus";
@@ -140,8 +141,7 @@ export default function RecommendPage() {
   const [selectedMenuId, setSelectedMenuId] = useState("");
 
   useEffect(() => {
-    const storedMenus = readStoredArray(MENUS_KEY);
-    const storedWines = readStoredArray(WINES_KEY);
+    const { menus: storedMenus, wines: storedWines } = getSeededDashboardData();
 
     setMenus(storedMenus);
     setWines(storedWines);

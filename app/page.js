@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { defaultWines } from "../data/defaultWines";
+import { getSeededDashboardData } from "../lib/demoData";
 
 const STORAGE_KEYS = {
   wines: "wines",
@@ -128,8 +129,7 @@ export default function Home() {
 
   useEffect(() => {
     const syncDashboardData = () => {
-      const wines = readStoredArray(STORAGE_KEYS.wines);
-      const menus = readStoredArray(STORAGE_KEYS.menus);
+      const { wines, menus } = getSeededDashboardData();
 
       setStoredWines(wines);
       setStoredMenus(menus);

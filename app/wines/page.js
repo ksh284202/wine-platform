@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { defaultWines } from "../../data/defaultWines";
+import { ensureDemoDataSeeded } from "../../lib/demoData";
 
 const STORAGE_KEY = "wines";
 const FALLBACK_WINE_IMAGE = "/images/wines/default-wine.jpg";
@@ -85,6 +86,7 @@ export default function WinesPage() {
   const [wines, setWines] = useState([]);
 
   useEffect(() => {
+    ensureDemoDataSeeded();
     setWines(readWines());
   }, []);
 
