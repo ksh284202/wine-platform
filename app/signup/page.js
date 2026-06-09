@@ -2,13 +2,21 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  fetchProfile,
+  getRoleRoute,
+  sanitizeSignupRole,
+  upsertProfileFromUser,
+} from "../../lib/auth";
+import { supabase } from "../../lib/supabaseClient";
 
 const initialForm = {
   name: "",
   email: "",
   password: "",
   role: "consumer",
+  businessName: "",
 };
 
 export default function SignupPage() {
@@ -16,6 +24,32 @@ export default function SignupPage() {
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function checkSession() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!active || !session?.user) {
+        return;
+      }
+
+      const { profile } = await fetchProfile(supabase, session.user.id);
+
+      if (profile?.role) {
+        router.replace(getRoleRoute(profile.role));
+      }
+    }
+
+    checkSession();
+
+    return () => {
+      active = false;
+    };
+  }, [router]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -26,24 +60,56 @@ export default function SignupPage() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
+    setMessage("");
 
-    window.localStorage.setItem(
-      "mockSignupProfile",
-      JSON.stringify({
-        name: form.name.trim(),
-        email: form.email.trim(),
-        role: form.role,
-      })
+    const role = sanitizeSignupRole(form.role);
+    const businessName = role === "business" ? form.businessName : "";
+
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email.trim(),
+      password: form.password,
+      options: {
+        data: {
+          name: form.name.trim() || null,
+          requested_role: role,
+          business_name: businessName.trim() || null,
+        },
+      },
+    });
+
+    if (error) {
+      setMessage(error.message);
+      setLoading(false);
+      return;
+    }
+
+    if (data.user && data.session) {
+      const { profile, error: profileError } = await upsertProfileFromUser(
+        supabase,
+        data.user,
+        role,
+        businessName
+      );
+
+      if (profileError || !profile) {
+        setMessage(
+          "회원가입은 완료되었지만 프로필 생성에 실패했습니다. Supabase의 profiles 테이블과 정책을 확인해주세요."
+        );
+        setLoading(false);
+        return;
+      }
+
+      router.replace(getRoleRoute(profile.role));
+      return;
+    }
+
+    setMessage(
+      "회원가입이 완료되었습니다. 이메일 인증을 사용하는 경우 메일을 확인한 뒤 로그인해주세요."
     );
-
-    setMessage("목업 회원가입이 완료되었습니다. 로그인 화면으로 이동합니다.");
-
-    window.setTimeout(() => {
-      router.push("/login");
-    }, 500);
+    setLoading(false);
   }
 
   return (
@@ -58,14 +124,13 @@ export default function SignupPage() {
               WineOps AI 회원가입
             </h1>
             <p className="mt-4 text-sm leading-7 text-[#7a6c61]">
-              현재는 목업 단계라 실제 계정 생성은 하지 않습니다. 다만 이후
-              Supabase Auth를 붙이기 좋은 형태로 필드를 구성해두었습니다.
+              일반 소비자와 사업자 역할에 맞는 회원가입 흐름을 먼저 구성해두었습니다.
             </p>
 
             <div className="mt-8 space-y-3">
               <FeatureLine text="consumer와 business만 선택 가능" />
               <FeatureLine text="admin은 회원가입 화면에서 선택 불가" />
-              <FeatureLine text="추후 같은 폼 구조에 실제 인증 연결 가능" />
+              <FeatureLine text="가입 후 role에 따라 대시보드 분기 가능" />
             </div>
           </section>
 
@@ -122,6 +187,17 @@ export default function SignupPage() {
                 </select>
               </div>
 
+              {form.role === "business" ? (
+                <LightField
+                  id="businessName"
+                  label="사업장 이름"
+                  type="text"
+                  name="businessName"
+                  value={form.businessName}
+                  onChange={handleChange}
+                />
+              ) : null}
+
               {message ? (
                 <p className="rounded-2xl bg-[#f5ebe3] px-4 py-3 text-sm text-[#7b463a]">
                   {message}
@@ -133,7 +209,7 @@ export default function SignupPage() {
                 disabled={loading}
                 className="w-full rounded-2xl bg-[#312823] px-5 py-3 text-sm font-semibold text-[#f8f3ee] transition hover:bg-[#433730] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {loading ? "처리 중..." : "회원가입"}
+                {loading ? "가입 중..." : "회원가입"}
               </button>
             </form>
 
@@ -164,7 +240,7 @@ function LightField({ id, label, type, name, value, onChange }) {
         type={type}
         value={value}
         onChange={onChange}
-        required
+        required={type !== "text" || name !== "businessName"}
         className="w-full rounded-2xl border border-[#e4dbd1] bg-[#fcfaf7] px-4 py-3 text-[#2f2622] outline-none transition focus:border-[#b59a87]"
       />
     </div>
