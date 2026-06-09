@@ -178,27 +178,29 @@ export default function LoginPage() {
                     <div className="absolute bottom-6 left-4 h-28 w-28 rounded-full bg-[#4e1019]/35 blur-2xl" />
                     <div className="absolute bottom-10 left-14 right-14 h-7 rounded-full bg-black/35 blur-xl" />
 
-                    <div className="flex min-h-[300px] items-end gap-4 sm:gap-6">
-                      <div className="w-36 shrink-0 sm:w-44">
-                        <img
-                          src="/images/wines/default-wine.jpg"
-                          alt="와인 병"
-                          className="h-auto w-full object-contain drop-shadow-[0_26px_24px_rgba(0,0,0,0.45)]"
-                        />
-                      </div>
+                    <div className="flex min-h-[300px] flex-col gap-6 xl:flex-row xl:items-end">
+                      <div className="flex items-end gap-4 sm:gap-6">
+                        <div className="w-36 shrink-0 sm:w-44">
+                          <img
+                            src="/images/wines/default-wine.jpg"
+                            alt="와인 병"
+                            className="h-auto w-full object-contain drop-shadow-[0_26px_24px_rgba(0,0,0,0.45)]"
+                          />
+                        </div>
 
-                      <div className="relative hidden h-52 w-28 shrink-0 items-end justify-center sm:flex">
-                        <div className="absolute bottom-0 h-10 w-20 rounded-full bg-black/30 blur-md" />
-                        <div className="relative flex h-full w-full items-end justify-center">
-                          <div className="absolute bottom-10 h-1 w-16 rounded-full bg-[#8b1d2a]" />
-                          <div className="absolute bottom-[4.6rem] h-20 w-[4.6rem] rounded-b-[2.6rem] rounded-t-[1.8rem] border border-[#ccb6a6] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
-                          <div className="absolute bottom-[4.7rem] h-10 w-[4.2rem] rounded-b-[2rem] bg-[linear-gradient(180deg,rgba(99,18,23,0.92),rgba(58,8,10,0.95))]" />
-                          <div className="absolute bottom-7 h-16 w-[2px] bg-[#d7cabf]" />
-                          <div className="absolute bottom-5 h-3 w-14 rounded-full border border-[#d7cabf] bg-[rgba(255,255,255,0.02)]" />
+                        <div className="relative hidden h-52 w-28 shrink-0 items-end justify-center sm:flex">
+                          <div className="absolute bottom-0 h-10 w-20 rounded-full bg-black/30 blur-md" />
+                          <div className="relative flex h-full w-full items-end justify-center">
+                            <div className="absolute bottom-10 h-1 w-16 rounded-full bg-[#8b1d2a]" />
+                            <div className="absolute bottom-[4.6rem] h-20 w-[4.6rem] rounded-b-[2.6rem] rounded-t-[1.8rem] border border-[#ccb6a6] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
+                            <div className="absolute bottom-[4.7rem] h-10 w-[4.2rem] rounded-b-[2rem] bg-[linear-gradient(180deg,rgba(99,18,23,0.92),rgba(58,8,10,0.95))]" />
+                            <div className="absolute bottom-7 h-16 w-[2px] bg-[#d7cabf]" />
+                            <div className="absolute bottom-5 h-3 w-14 rounded-full border border-[#d7cabf] bg-[rgba(255,255,255,0.02)]" />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="flex-1">
+                      <div className="min-w-0 xl:pb-3">
                         <p className="text-sm uppercase tracking-[0.28em] text-[#b89365]">
                           Signature Mood
                         </p>
