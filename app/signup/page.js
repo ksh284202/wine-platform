@@ -188,23 +188,13 @@ export default function SignupPage() {
                 onChange={handleChange}
               />
 
-              <div>
-                <label
-                  htmlFor="role"
-                  className="mb-2 block text-sm font-medium text-[#5a4f49]"
-                >
-                  역할 선택
-                </label>
-                <select
-                  id="role"
-                  name="role"
-                  value={form.role}
-                  onChange={handleChange}
-                  className="w-full rounded-2xl border border-[#e4dbd1] bg-[#fcfaf7] px-4 py-3 text-[#2f2622] outline-none transition focus:border-[#b59a87]"
-                >
-                  <option value="consumer">consumer</option>
-                  <option value="business">business</option>
-                </select>
+              <div className="rounded-2xl border border-[#eadfd2] bg-[#f9f5f0] px-4 py-3">
+                <p className="text-xs uppercase tracking-[0.22em] text-[#9a8c80]">
+                  선택된 계정 유형
+                </p>
+                <p className="mt-2 text-sm font-medium text-[#2f2622]">
+                  {form.role === "business" ? "사업자" : "소비자"}
+                </p>
               </div>
 
               {form.role === "business" ? (
