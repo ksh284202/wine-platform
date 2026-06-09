@@ -173,60 +173,45 @@ export default function LoginPage() {
               </div>
 
               <div className="mt-10 grid gap-6">
-                <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
                   <div className="relative overflow-hidden rounded-[28px] border border-[#4a352c] bg-[linear-gradient(180deg,rgba(19,15,13,0.72),rgba(10,8,7,0.88))] p-6">
                     <div className="absolute bottom-6 left-4 h-28 w-28 rounded-full bg-[#4e1019]/35 blur-2xl" />
                     <div className="absolute bottom-10 left-14 right-14 h-7 rounded-full bg-black/35 blur-xl" />
 
-                    <div className="flex min-h-[300px] flex-col gap-6 xl:flex-row xl:items-end">
-                      <div className="flex items-end gap-4 sm:gap-6">
-                        <div className="w-36 shrink-0 sm:w-44">
+                    <div className="flex min-h-[300px] items-end justify-center gap-4 sm:gap-8">
+                      <div className="w-40 shrink-0 sm:w-52">
                           <img
                             src="/images/wines/default-wine.jpg"
                             alt="와인 병"
                             className="h-auto w-full object-contain drop-shadow-[0_26px_24px_rgba(0,0,0,0.45)]"
                           />
-                        </div>
-
-                        <div className="relative hidden h-52 w-28 shrink-0 items-end justify-center sm:flex">
-                          <div className="absolute bottom-0 h-10 w-20 rounded-full bg-black/30 blur-md" />
-                          <div className="relative flex h-full w-full items-end justify-center">
-                            <div className="absolute bottom-10 h-1 w-16 rounded-full bg-[#8b1d2a]" />
-                            <div className="absolute bottom-[4.6rem] h-20 w-[4.6rem] rounded-b-[2.6rem] rounded-t-[1.8rem] border border-[#ccb6a6] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
-                            <div className="absolute bottom-[4.7rem] h-10 w-[4.2rem] rounded-b-[2rem] bg-[linear-gradient(180deg,rgba(99,18,23,0.92),rgba(58,8,10,0.95))]" />
-                            <div className="absolute bottom-7 h-16 w-[2px] bg-[#d7cabf]" />
-                            <div className="absolute bottom-5 h-3 w-14 rounded-full border border-[#d7cabf] bg-[rgba(255,255,255,0.02)]" />
-                          </div>
-                        </div>
                       </div>
 
-                      <div className="min-w-0 xl:pb-3">
-                        <p className="text-sm uppercase tracking-[0.28em] text-[#b89365]">
-                          Signature Mood
-                        </p>
-                        <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-[#f4e7d8] sm:text-3xl">
-                          WineOps AI
-                        </h3>
-                        <p className="mt-4 text-base leading-8 text-[#d9c9bc]">
-                          프리미엄 와인 운영과 추천 경험을 한 화면에서 자연스럽게
-                          보여주는 서비스 인트로 영역입니다.
-                        </p>
+                      <div className="relative hidden h-56 w-32 shrink-0 items-end justify-center sm:flex">
+                        <div className="absolute bottom-0 h-10 w-20 rounded-full bg-black/30 blur-md" />
+                        <div className="relative flex h-full w-full items-end justify-center">
+                          <div className="absolute bottom-10 h-1 w-16 rounded-full bg-[#8b1d2a]" />
+                          <div className="absolute bottom-[4.6rem] h-20 w-[4.6rem] rounded-b-[2.6rem] rounded-t-[1.8rem] border border-[#ccb6a6] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
+                          <div className="absolute bottom-[4.7rem] h-10 w-[4.2rem] rounded-b-[2rem] bg-[linear-gradient(180deg,rgba(99,18,23,0.92),rgba(58,8,10,0.95))]" />
+                          <div className="absolute bottom-7 h-16 w-[2px] bg-[#d7cabf]" />
+                          <div className="absolute bottom-5 h-3 w-14 rounded-full border border-[#d7cabf] bg-[rgba(255,255,255,0.02)]" />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="rounded-[28px] border border-[#433028] bg-[rgba(17,13,12,0.66)] p-6 backdrop-blur">
-                    <p className="text-center text-3xl leading-[1.7] tracking-[-0.04em] text-[#ddb06c]">
-                      "
-                    </p>
-                    <p className="mt-2 text-center text-xl leading-9 text-[#e8d8c9] sm:text-[1.65rem] sm:leading-[2.5rem]">
-                      좋은 와인은 순간을 특별하게 만들고,
-                      <br />
-                      좋은 선택은 경험을 완성합니다.
-                    </p>
-                    <p className="mt-2 text-center text-3xl leading-[1.7] tracking-[-0.04em] text-[#ddb06c]">
-                      "
-                    </p>
+                  <div className="overflow-hidden rounded-[28px] border border-[#433028] bg-[linear-gradient(180deg,rgba(37,24,20,0.92),rgba(14,10,9,0.96))] p-0 backdrop-blur">
+                    <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(129,48,58,0.22),transparent_28%),radial-gradient(circle_at_bottom,rgba(215,160,85,0.10),transparent_24%)]" />
+                      <div className="absolute bottom-6 left-1/2 h-8 w-40 -translate-x-1/2 rounded-full bg-black/30 blur-xl" />
+                      <div className="w-52 sm:w-64">
+                        <img
+                          src="/images/wines/default-wine.jpg"
+                          alt="와인 비주얼"
+                          className="h-auto w-full object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.4)]"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
