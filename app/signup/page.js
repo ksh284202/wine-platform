@@ -124,13 +124,33 @@ export default function SignupPage() {
               WineOps AI 회원가입
             </h1>
             <p className="mt-4 text-sm leading-7 text-[#7a6c61]">
-              일반 소비자와 사업자 역할에 맞는 회원가입 흐름을 먼저 구성해두었습니다.
+              사용할 계정 유형을 먼저 선택한 뒤 회원가입을 진행하세요.
             </p>
 
-            <div className="mt-8 space-y-3">
-              <FeatureLine text="consumer와 business만 선택 가능" />
-              <FeatureLine text="admin은 회원가입 화면에서 선택 불가" />
-              <FeatureLine text="가입 후 role에 따라 대시보드 분기 가능" />
+            <div className="mt-8 grid gap-4">
+              <RoleChoiceCard
+                title="소비자"
+                description="와인 추천과 매장 탐색을 위한 일반 사용자 계정"
+                active={form.role === "consumer"}
+                onClick={() =>
+                  setForm((current) => ({
+                    ...current,
+                    role: "consumer",
+                    businessName: "",
+                  }))
+                }
+              />
+              <RoleChoiceCard
+                title="사업자"
+                description="매장 운영, 메뉴 관리, 추천 운영을 위한 사업자 계정"
+                active={form.role === "business"}
+                onClick={() =>
+                  setForm((current) => ({
+                    ...current,
+                    role: "business",
+                  }))
+                }
+              />
             </div>
           </section>
 
@@ -252,5 +272,24 @@ function FeatureLine({ text }) {
     <div className="rounded-2xl border border-[#eadfd2] bg-white/70 px-4 py-3 text-sm text-[#5f5249]">
       {text}
     </div>
+  );
+}
+
+function RoleChoiceCard({ title, description, active, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full rounded-[24px] border px-5 py-5 text-left transition ${
+        active
+          ? "border-[#7f5d46] bg-[#f5ece2] shadow-[0_12px_30px_rgba(78,64,52,0.08)]"
+          : "border-[#eadfd2] bg-white/70 hover:bg-white"
+      }`}
+    >
+      <p className="text-2xl font-semibold tracking-[-0.03em] text-[#2f2622]">
+        {title}
+      </p>
+      <p className="mt-2 text-sm leading-7 text-[#6d5f55]">{description}</p>
+    </button>
   );
 }
