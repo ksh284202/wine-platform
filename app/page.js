@@ -311,19 +311,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-4 right-4 left-[9.5rem] rounded-[22px] border border-[#4b3930] bg-[rgba(20,15,13,0.72)] px-5 py-6 backdrop-blur sm:left-[13.5rem]">
-                    <p className="text-center text-3xl leading-[1.7] tracking-[-0.04em] text-[#ddb06c]">
-                      "
-                    </p>
-                    <p className="mt-2 text-center text-lg leading-8 text-[#e8d8c9] sm:text-[1.55rem] sm:leading-[2.1rem]">
-                      좋은 와인은 순간을 특별하게 만들고,
-                      <br />
-                      좋은 선택은 경험을 완성합니다.
-                    </p>
-                    <p className="mt-2 text-center text-3xl leading-[1.7] tracking-[-0.04em] text-[#ddb06c]">
-                      "
-                    </p>
-                  </div>
+                  <div className="absolute inset-0 pointer-events-none" />
                 </div>
 
                 <div className="rounded-[28px] border border-[#433028] bg-[rgba(17,13,12,0.66)] p-5 backdrop-blur">
